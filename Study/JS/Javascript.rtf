@@ -1,0 +1,408 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\b\f0\fs22\lang9 JavaScript Basics\par
+\b0 JavaScript is lightweight, interpered,  object oriented, with first class functions and best known for web pages but also used in non browser environments.\par
+\b Premitive Type of JS:\b0\par
+number : Folating points number (64 bits) -- there isn't integer in JS.\par
+String : Every text is string in JS. There isn't any concept of character in JS. single charcter is also string with length 1.\par
+boolean: true or false\par
+undefined\par
+null\par
+symbol - introduced in ES6 (TODO)\par
+\b By default,  if you declare a variable and haven't defined any thing then it will have undefined as a value.\b0\par
+var a -- declaraion -- undifined and type of undefined\par
+a = 10 --definition\par
+var a \par
+console.log(a) // undefined\par
+a = 10\par
+console.log(a) // 10\par
+\b Difference b/w undefined and null\par
+\b0 If we are filling a form and leaving some field empty as we are not aware of it thats will be filled by undefined and if we know that some field is not applicable and we can fill that as NA or null. For example if someone doesn't have middle name then they can fill null to that variable since they aware of it.\par
+\b typeof:\par
+\b0 This define what kind of varibale or value a variable is holding currently.\par
+Example:\par
+var a \par
+console.log(a)   // undefined\par
+console.log(typeof a) // undefined\par
+a = 10\par
+console.log(a)  // 10\par
+console.log(typeof a) // number\par
+var b = "test"\par
+console.log(typeof b) // String\par
+var c = true\par
+console.log(typeof c) // boolean\par
+var d = null\par
+console.log(typeof d) //object - \b This is contradiction in javascript. Basically this bug in Js since begining. THis should be null. So we need to be aware of it.\par
+Type Corecion:\par
+\b0 Automatic change of type. for example\par
+10 + "1234" = 101234  so integer has been changed to string and concatenated\par
+\b = , == and === operator\par
+\b0 =  is assignment operator \par
+a = 10\par
+a = 10\par
+\par
+if(a == 10) \{\par
+    console.log("value is equal"); \par
+\}\par
+\b output: value is equal\b0\par
+if(a == "10") \{\par
+    console.log("value is equal");\par
+\}\par
+\b output: value is equal \par
+== operator perform type corecion before comparing so output will be wrong so it advisible to use === most of the cases if you want to compare two variables. \b0\par
+if(a==="10") \{\par
+    console.log("value is equal")\par
+\} else \{\par
+    console.log("value is unequal")\par
+\}\par
+\b output: value is unequal\par
+\b0 if(statement) \{\par
+        console.log(statement)  \par
+\}\par
+all premitive variables has associated boolean value.\par
+\b statement is true most of the time. It will be false for following value like 0, empty, undefined, null.\par
+Objects:\par
+Free form not bound to a class\par
+Object literals notation to create objects\par
+Direct access the object property\par
+New property can be directly added to the object\par
+Object can have a method\par
+\b0 Examples:\b\par
+\b0 var myObj = \{\} // empty object\par
+\par
+console.log(myObj) // \{\}\par
+\par
+myObj.prop = "test obj"\par
+myObj.prop2 = 123\par
+myObj.name = "demo object"\par
+\par
+console.log(myObj) // \{ prop: 'test obj', prop2: 123, name: 'demo object' \}\par
+console.log(myObj.name) // demo object\par
+console.log(myObj.prop2) // 123\par
+\par
+\b //Object Literals:\b0\par
+var myObjLiterals = \{\par
+    "name" : "Ritesh",\par
+     roll: 123\par
+\}\par
+console.log(myObjLiterals) // \{ name: 'Ritesh', roll: 123 \}\par
+\b Dot notation\b0\par
+console.log(myObjLiterals.roll) // 123\par
+// If you try to access property which is not defined then will get undefined\par
+console.log(myObjLiterals.address) // undefined\par
+\b Bracket notation\b0\par
+console.log(myObjLiterals["roll"]) // 123\par
+\b Difference b/w dot and sqaure bracket notation: \par
+\b0 Use [] notation when:\par
+ 1. Property name is reserved word / invalid identifier.\par
+2. Property name start with number.\par
+\tab // Dot and [] backet notation\par
+
+\pard\li720\sa200\sl276\slmult1 var testObj = \{\par
+    name : "Ritesh",\par
+    prop : "test1",\par
+    prop2 : "test2",\par
+    1 : "one"\par
+\}\par
+
+\pard\sa200\sl276\slmult1 //console.log(testObj.1) // error SyntaxError: missing ) after argument list\par
+console.log(testObj["1"]) // one\par
+3. Property name is dynamic.\par
+\tab var propertyName = "prop" \par
+         \tab console.log(testObj[propertyName]) //test1\par
+4. Runtime may not be able to optimize [] notation\b .\par
+\b0 5. Dot and [] can be interchanged.\par
+\b Mostly try to use dot notation since this faster and if needed then only use [] notation\par
+\par
+Nested Objects :\par
+\b0 Object inside object is nested object. For example:\b\par
+\b0 var tObj = \{\par
+    name : "Ritesh",\par
+    prop : "test1",\par
+    prop2 : "test2",\par
+    innerObj : \{\par
+        address : "Bangalore",\par
+        phone: "1232434545"\par
+    \},\par
+    1 : "one"\par
+\}\par
+console.log(tObj) \par
+console.log(tObj.innerObj.address) // Bangalore\par
+console.log(tObj.innerObj["phone"]) // 1232434545\par
+\b === in Ojects\b0\par
+Objects variables is equal if they both points to the object location. For example:\par
+var test1 = \{\par
+    demo : "Hello"\par
+\}\par
+var test2;\par
+test2 = test1;\par
+if(test1 === test2) \{\par
+    console.log("variables are equal") //variables are equal\par
+\}\par
+var test3 = \{\par
+    demo : "Hello"\par
+\}\par
+// This condition will be false since both the objects are pointing to two different location\par
+if(test1 === test3) \{\par
+    console.log("variables are equal") \par
+\}\par
+\b null and undefined on objects\par
+\b0 If you try to use variable which is not defined inside the object it will retrun undefined. If want to have some value then set this to null or NA value.\par
+var test3 = \{\par
+    demo : "Hello",\par
+    demo1: null\par
+\}\par
+console.log(test3.age) // undefined\par
+console.log(test3.demo1) // null\par
+\b delete property from object\par
+\b0 var test4 = \{\par
+    demo : "Hello",\par
+    age: 25\par
+\}\par
+// If you set property value to undefined so it sets value to undefined but it doesn't remove the property from objects \par
+test4.age = undefined\par
+console.log(test4.age) // undefined\par
+console.log(test4) // \{ demo: 'Hello', age: undefined \}\par
+// For deleting object properties permanantely we have to use delete keyword\par
+delete test4.age\par
+console.log(test4.age) // undefined\par
+console.log(test4) // \{ demo: 'Hello' \}\b\par
+Arrays :\par
+\b0 When you try to access index value which is not available in array it will return undefined.\b\par
+\b0 var myArr = ["Hello", "World", "JS"]\par
+console.log(myArr) // [ 'Hello', 'World', 'JS' ]\par
+console.log(myArr[0]) // Hello\par
+console.log(myArr[3]) // undefined\par
+myArr[3] = "Thanks you"\par
+console.log(myArr) // [ 'Hello', 'World', 'JS', 'Thanks you' ]\par
+\b Wrapper Objects:\par
+\b0 Premitive types will be changed to object for example:\par
+string - String\par
+number - Number\par
+boolean - Boolean\par
+symbol - Symbol\par
+For example - If we do String.length then  JavaScript automatically converts string premitive to String object and perform length function and then discard the object.\par
+\b Function:\par
+functions are object\par
+\b0 function test(name, roll) \{\par
+    console.log("name " + name +" roll "+roll)\par
+\}\par
+// If you pass exact argument it will behave as expected.\par
+test("Ritesh", 01) // name Ritesh roll 1\par
+// If you pass less argument then it will add undefined for missing arguments.\par
+test("Ritesh") // name Ritesh roll undefined\par
+// If you pass extra arguments then it will skip the extra arguments.\par
+test("Ritesh", 01, "Test") // name Ritesh roll 1\par
+There isn't overload concepts since functions arguments  are flexible in JS .\par
+\b Function Return:\par
+\b0 You can return from function with return keyword. If you return nothing from function then it return value will be undefined.\par
+// Function Expression\par
+// This will set function to a variable. Not only return value but full function will be set to variable.\par
+var f = function foo() \{\par
+    console.log("demo") \par
+\};\par
+f()  // demo\par
+\b Anonymous function expression:\par
+\b0 // function without name\par
+var f = function () \{\par
+    console.log("demo") \par
+\};\par
+f()  // demo\par
+// Calling function from another function\par
+var executor = function (fn) \{\par
+    fn()\par
+\};\par
+executor(f) // demo\par
+// Function execution with arguments\par
+var f = function foo(name) \{\par
+    console.log("name is : "+name)\par
+\};\par
+var executor = function (fn, name) \{\par
+    fn(name)\par
+\};\par
+executor(f, "Test")// name is : Test\par
+\b Function inside object:\b0\par
+var testObj = \{\par
+    name : "Ritesh"\par
+\}\par
+testObj.demo = function() \{\par
+    console.log("function inside object")\par
+\}\par
+console.log(testObj) // \{ name: 'Ritesh', demo: [Function] \}\par
+console.log(testObj.demo()) // function inside object\par
+\b this keyword:\par
+\b0 var person = \{\par
+    address : \{\par
+        "state" : "KA",\par
+        "City" : "Bangalore",\par
+        "country" : "India"\par
+    \},\par
+    isFromState: function (state) \{\par
+        if(this.address.state === state) \{\par
+            console.log("person belongs to same state")\par
+        \} else \{\par
+            console.log("person belongs to some other state")\par
+        \}\par
+    \}\par
+\}\par
+person.isFromState("KA") // person belongs to same state\par
+this keyword belongs to self or given instance of object and operate on the same object variable.\par
+\b Default function arguments:\par
+\b0 Arguments are not array. this behaves like var-args in java.\par
+var test = function (a, b) \{\par
+    console.log(arguments) // \{ '0': 10, '1': 20, '2': 30, '3': 40, '4': 50 \}\par
+    var i;\par
+    var sum = 0;\par
+    for(i=0; i <arguments.length; i++) \{\par
+        sum += arguments[i]\par
+    \}\par
+    console.log(sum) // 150\par
+\}\par
+test(10, 20, 30, 40, 50)\par
+\b Inbuild object in JS:\par
+\b0 Array\par
+Math - TODO\par
+Date - TODO\par
+\b forEach() in JS:\b0\par
+var testArr = [10, 20, "Hello", \{\}]\par
+\par
+testArr.forEach (function(item, index, array) \{\par
+    console.log("item : "+item + " index : "+index)\par
+\});\par
+var testFunct = function(item, index, array) \{\par
+    console.log("item : "+item + " index : "+index)\par
+\}\par
+testArr.forEach(testFunct)\par
+\par
+\b Constructor in JS:\par
+\b0 Constructor used to create object in javascript. By convention, construction should be created in capital letter to better clarity b/w function and constructor.\par
+For example:\par
+function createBicycle (credence, speed, gear) \{\par
+    var newObj = \{\}\par
+    newObj.credence = credence\par
+    newObj.speed = speed\par
+    newObj.gear = gear \par
+    return newObj\par
+\}\par
+var cycle1 = createBicycle(10, 50, 2) \par
+// constructor \par
+function Bicycle(credence, speed, gear) \{\par
+    // var this = \{\} (by default)\par
+    this.credence = credence\par
+    this.speed = speed\par
+    this.gear = gear\par
+    //return this (by default)\par
+\}\par
+var cycle2 = new Bicycle(50, 40, 4)\par
+console.log(cycle1) // \{ credence: 10, speed: 50, gear: 2 \}\par
+console.log(cycle2) // Bicycle \{ credence: 50, speed: 40, gear: 4 \}\par
+\par
+\b Function Execution Type:\b0\par
+// Method 1\par
+function foo () \{\par
+    console.log('Hello1')\par
+\}\par
+foo() // Hello\par
+// Method 2\par
+var foo = function() \{\par
+    console.log('Hello2')\par
+\}\par
+foo() // Hello\par
+// Method 3\par
+var obj = \{\}\par
+obj.foo = function () \{\par
+    console.log('Hello3')\par
+\}\par
+obj.foo() // Hello\par
+new foo() // Hello\par
+\par
+\b this keyword user: \b0\par
+function Bicycle (credence, speed, gear, tier) \{\par
+    this.credence = credence\par
+    this.speed = speed\par
+    this.gear = gear\par
+    this.tier = tier\par
+    this.inflate = function () \{\par
+        this.tier += 3\par
+    \}\par
+\}\par
+let bicycle = new Bicycle(10, 20, 30, 40)\par
+bicycle.inflate()\par
+console.log(bicycle)\par
+// result  \par
+Bicycle \{\par
+  credence: 10,\par
+  speed: 20,\par
+  gear: 30,\par
+  tier: 43,\par
+  inflate: [Function]\par
+\}\par
+\b Using the call function :\par
+\b0 through call() function we can pass object and that object will be use access the property or to execute that function.\b\par
+\b0 function Bicycle (credence, speed, gear, tier) \{\par
+    this.credence = credence\par
+    this.speed = speed\par
+    this.gear = gear\par
+    this.tier = tier\par
+    this.inflate = function () \{\par
+        this.tier += 3\par
+    \}\par
+\}\par
+let bicycle = new Bicycle(10, 20, 30, 40)\par
+bicycle.inflate()\par
+console.log(bicycle)\par
+function Mechanic (name) \{\par
+    this.name = name\par
+\}\par
+var mike = new Mechanic("Mike")\par
+mike.inflate = bicycle.inflate\par
+mike.inflate()\par
+console.log(mike)\par
+mike.inflate.call(bicycle)\par
+console.log(bicycle)\par
+// result\par
+Bicycle \{\par
+  credence: 10,\par
+  speed: 20,\par
+  gear: 30,\par
+  tier: 46,\par
+  inflate: [Function]\par
+\}\par
+var bicycle2 = new Bicycle(30, 60, 90, 120)\par
+mike.inflate.call(bicycle2)\par
+console.log(bicycle2)\par
+// result\par
+Bicycle \{\par
+  credence: 30,\par
+  speed: 60,\par
+  gear: 90,\par
+  tier: 123,\par
+  inflate: [Function]\par
+\}\par
+\par
+\b __proto__  or prototype:\b0\par
+Note: Whenever you create a object with new keyword it will create __proto__ and that is nothing but an object. this is basically prototype object.\par
+If you try to lookup object attributes then it will first lookup in object space to get the attribute value if not found then it will look for __proto__ object reference, if attribute available on __proto__ then it will return the value.\par
+Example:\par
+function foo() \{\}\par
+console.log(foo) // [Function: foo]\par
+var newFoo = new foo()\par
+newFoo.test = 'test'\par
+console.log(newFoo) //foo \{ test: 'test' \}\par
+console.log(newFoo.__proto__) //foo \{\}\par
+newFoo.__proto__.hello = 'hello'\par
+console.log(newFoo) // foo \{ test: 'test' \}\par
+console.log(newFoo.__proto__) // foo \{ hello: 'hello' \}\par
+console.log(newFoo.hello) // hello\par
+newFoo.__proto__.test = '10' \par
+console.log(newFoo) // foo \{ test: 'test' \}\par
+console.log(newFoo.__proto__) // foo \{ hello: 'hello', test: '10' \}\par
+console.log(newFoo.test) // test\par
+delete newFoo.test\par
+// test is not available in main objects space that why it is loaded from __proto__ object.\par
+console.log(newFoo.test) // 10\par
+\par
+\par
+\par
+}
+ 
