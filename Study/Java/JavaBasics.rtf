@@ -167,7 +167,8 @@ Exception handling will happens at runtime. Compile time exception will shown di
 Hierarchy:\par
 Throwable\par
 \tab 1. Exception\par
-\tab\tab a. RuntimeException (Unchecked Excption)\par
+\tab\tab a. RuntimeException (Unchecked Excption) - Null Pointer, Array Index out of Bount Exception, IlligalArgument Exception, Airthmetic Exception, NumberFormat Exception\par
+\tab\tab b. CompileTime Exception (Checked Exception) -  IO, FileNotFound, SqlException, Parse Exception, Socket Exception.\par
 \tab 2. Error\par
 Note: If any code extends Exception then that need to under try catch. for Runtime and Error, we don't need try and catch.\par
 \par
