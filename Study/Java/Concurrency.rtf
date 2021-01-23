@@ -1,5 +1,5 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fmodern JetBrains Mono;}{\f2\fmodern\fcharset0 JetBrains Mono;}}
-{\colortbl ;\red204\green120\blue50;\red169\green183\blue198;\red187\green181\blue41;\red255\green198\blue109;\red152\green118\blue170;\red106\green135\blue89;}
+{\colortbl ;\red204\green120\blue50;\red169\green183\blue198;\red187\green181\blue41;\red255\green198\blue109;\red152\green118\blue170;\red106\green135\blue89;\red128\green128\blue128;}
 {\*\generator Riched20 10.0.19041}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\b\f0\fs22\lang9 Threads:\b0\par
 A thread is single sequential flow of control within a program.\par
@@ -112,8 +112,7 @@ Required.\par
 3. Release the monitor lock when exiting the block.\par
 4. Any other threads needs to wait (Can't get monitor lock).\par
 For Example:\par
-
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf1\f1\fs20 synchronized \cf2 (\cf1 this\cf2 ) \{\line     increment()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(Thread.\i currentThread\i0 ().getName() + \cf6 " after \f0\lang1033\tab\tab\tab\f1\lang9 increment : " \cf2 + \cf5 value\cf2 )\cf1 ;\line     \cf2 decrement()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(Thread.\i currentThread\i0 ().getName() + \cf6 " after \f0\lang1033\tab\tab\tab\f1\lang9 decrement : " \cf2 + \cf5 value\cf2 )\cf1 ;\line\cf2\}\par
+\cf1\f1\fs20 synchronized \cf2 (\cf1 this\cf2 ) \{\line     increment()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(Thread.\i currentThread\i0 ().getName() + \cf6 " after \f0\lang1033\tab\tab\tab\f1\lang9 increment : " \cf2 + \cf5 value\cf2 )\cf1 ;\line     \cf2 decrement()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(Thread.\i currentThread\i0 ().getName() + \cf6 " after \f0\lang1033\tab\tab\tab\f1\lang9 decrement : " \cf2 + \cf5 value\cf2 )\cf1 ;\line\cf2\}\par
 \cf0\b\f0\fs22 Synchronized method:\b0\par
 Lock is associated with object whose method is being called.\par
 Note: Syncronized blocks or code under synchronized block is called critical section.\par
@@ -196,6 +195,15 @@ Note: thread will also store other variable in block to memory where volatile ke
 1. Generic class.\par
 2. Almost like a wrapper.\par
 3. Each thread sets and get a different values.\par
+\b Unstructured Lock and lock objects:\par
+This is unstructured way to implement synchronization.\par
+example:\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf1\b0\f1\fs20 private \cf2 Lock \cf5 l \cf2 = \cf1 new \cf2 ReentrantLock()\cf1 ;\cf0\b\f0\fs22\par
+\cf7\b0\f1\fs20 // lock implementation also work like synchronization\line // If any exception occur during this execution, lock will be released.\line\cf1 try \cf2\{\line     \cf5 l\cf2 .lock()\cf1 ;\line     \cf2 increment()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(Thread.\i currentThread\i0 ().getName() + \cf6 " after increment : " \cf2 + \cf1 this\cf2 .getValue())\cf1 ;\line     \cf2 decrement()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(Thread.\i currentThread\i0 ().getName() + \cf6 " after decrement : " \cf2 + \cf1 this\cf2 .getValue())\cf1 ;\line\cf2\} \cf1 finally \cf2\{\line     \cf5 l\cf2 .unlock()\cf1 ;\line\cf2\}\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf0\f0\fs22\par
+\par
 \b\par
 \par
 \b0\par
@@ -203,8 +211,7 @@ Note: thread will also store other variable in block to memory where volatile ke
 \b\par
 \b0\par
 \cf2\f1\fs20\par
-
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf0\f0\fs22\par
+\cf0\f0\fs22\par
 \par
 \par
 \par
