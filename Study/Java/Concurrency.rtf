@@ -1,5 +1,5 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fmodern JetBrains Mono;}{\f2\fmodern\fcharset0 JetBrains Mono;}}
-{\colortbl ;\red204\green120\blue50;\red169\green183\blue198;\red187\green181\blue41;\red255\green198\blue109;\red152\green118\blue170;\red106\green135\blue89;\red128\green128\blue128;}
+{\colortbl ;\red204\green120\blue50;\red169\green183\blue198;\red187\green181\blue41;\red255\green198\blue109;\red152\green118\blue170;\red106\green135\blue89;\red128\green128\blue128;\red104\green151\blue187;}
 {\*\generator Riched20 10.0.19041}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\b\f0\fs22\lang9 Threads:\b0\par
 A thread is single sequential flow of control within a program.\par
@@ -196,13 +196,33 @@ Note: thread will also store other variable in block to memory where volatile ke
 2. Almost like a wrapper.\par
 3. Each thread sets and get a different values.\par
 \b Unstructured Lock and lock objects:\par
-This is unstructured way to implement synchronization.\par
+\b0 This is unstructured way to implement synchronization.\par
 example:\par
 
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf1\b0\f1\fs20 private \cf2 Lock \cf5 l \cf2 = \cf1 new \cf2 ReentrantLock()\cf1 ;\cf0\b\f0\fs22\par
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf1\f1\fs20 private \cf2 Lock \cf5 l \cf2 = \cf1 new \cf2 ReentrantLock()\cf1 ;\cf0\b\f0\fs22\par
 \cf7\b0\f1\fs20 // lock implementation also work like synchronization\line // If any exception occur during this execution, lock will be released.\line\cf1 try \cf2\{\line     \cf5 l\cf2 .lock()\cf1 ;\line     \cf2 increment()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(Thread.\i currentThread\i0 ().getName() + \cf6 " after increment : " \cf2 + \cf1 this\cf2 .getValue())\cf1 ;\line     \cf2 decrement()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(Thread.\i currentThread\i0 ().getName() + \cf6 " after decrement : " \cf2 + \cf1 this\cf2 .getValue())\cf1 ;\line\cf2\} \cf1 finally \cf2\{\line     \cf5 l\cf2 .unlock()\cf1 ;\line\cf2\}\par
 
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf0\f0\fs22\par
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf0\f0\fs22 Executor services:\par
+1. Manages runnable (or "task") for you.\par
+2. Provides extra abilities(thread pool).\par
+3. Enables result.\par
+Basically thread executor services used to reuse threats and manage thread pool. Thease APIs will return a value when thread task is done.\par
+Example :\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf2\f1\fs20 ExecutorService executorService = Executors.\i newFixedThreadPool\i0 (\cf8 2\cf2 )\cf1 ;\par
+\cf2 executorService.execute(runnable)\cf1 ;\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf0\f0\fs22 Types of Executor Service:\par
+1. Fixed thread pool executor. \par
+\tab - When number of thread is fixed.\par
+2. Single threaded executor.\par
+\tab - When number of thread is fixed to 1.\par
+3. Cached thread pool executor.\par
+\tab - When thread size is dynamic. it will not be fixed based requirenment this will create the thread or destroy the thread. Its use synchronous queue.\par
+4. Scheduled thread pool executor.\par
+\tab - Schedule threads executor will schedule the task and available thread will execute the task or new thread will be spawn to execute the task.\par
+5. Work stealing thread pool executor. \par
+\tab - Newly added from java 7. this uses parallelism level concept.\par
 \par
 \b\par
 \par
