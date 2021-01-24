@@ -1,5 +1,5 @@
 {\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fmodern JetBrains Mono;}{\f2\fmodern\fcharset0 JetBrains Mono;}}
-{\colortbl ;\red204\green120\blue50;\red169\green183\blue198;\red187\green181\blue41;\red255\green198\blue109;\red152\green118\blue170;\red106\green135\blue89;\red128\green128\blue128;\red104\green151\blue187;}
+{\colortbl ;\red204\green120\blue50;\red169\green183\blue198;\red187\green181\blue41;\red255\green198\blue109;\red152\green118\blue170;\red106\green135\blue89;\red128\green128\blue128;\red104\green151\blue187;\red179\green137\blue197;}
 {\*\generator Riched20 10.0.19041}\viewkind4\uc1 
 \pard\sa200\sl276\slmult1\b\f0\fs22\lang9 Threads:\b0\par
 A thread is single sequential flow of control within a program.\par
@@ -198,21 +198,17 @@ Note: thread will also store other variable in block to memory where volatile ke
 \b Unstructured Lock and lock objects:\par
 \b0 This is unstructured way to implement synchronization.\par
 example:\par
-
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf1\f1\fs20 private \cf2 Lock \cf5 l \cf2 = \cf1 new \cf2 ReentrantLock()\cf1 ;\cf0\b\f0\fs22\par
+\cf1\f1\fs20 private \cf2 Lock \cf5 l \cf2 = \cf1 new \cf2 ReentrantLock()\cf1 ;\cf0\b\f0\fs22\par
 \cf7\b0\f1\fs20 // lock implementation also work like synchronization\line // If any exception occur during this execution, lock will be released.\line\cf1 try \cf2\{\line     \cf5 l\cf2 .lock()\cf1 ;\line     \cf2 increment()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(Thread.\i currentThread\i0 ().getName() + \cf6 " after increment : " \cf2 + \cf1 this\cf2 .getValue())\cf1 ;\line     \cf2 decrement()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(Thread.\i currentThread\i0 ().getName() + \cf6 " after decrement : " \cf2 + \cf1 this\cf2 .getValue())\cf1 ;\line\cf2\} \cf1 finally \cf2\{\line     \cf5 l\cf2 .unlock()\cf1 ;\line\cf2\}\par
-
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf0\f0\fs22 Executor services:\par
+\cf0\f0\fs22 Executor services:\par
 1. Manages runnable (or "task") for you.\par
 2. Provides extra abilities(thread pool).\par
 3. Enables result.\par
 Basically thread executor services used to reuse threats and manage thread pool. Thease APIs will return a value when thread task is done.\par
 Example :\par
-
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf2\f1\fs20 ExecutorService executorService = Executors.\i newFixedThreadPool\i0 (\cf8 2\cf2 )\cf1 ;\par
+\cf2\f1\fs20 ExecutorService executorService = Executors.\i newFixedThreadPool\i0 (\cf8 2\cf2 )\cf1 ;\par
 \cf2 executorService.execute(runnable)\cf1 ;\par
-
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf0\f0\fs22 Types of Executor Service:\par
+\cf0\f0\fs22 Types of Executor Service:\par
 1. Fixed thread pool executor. \par
 \tab - When number of thread is fixed.\par
 2. Single threaded executor.\par
@@ -223,6 +219,19 @@ Example :\par
 \tab - Schedule threads executor will schedule the task and available thread will execute the task or new thread will be spawn to execute the task.\par
 5. Work stealing thread pool executor. \par
 \tab - Newly added from java 7. this uses parallelism level concept.\par
+\b Callable:\b0\par
+Callable is interface like Runnable but we don't need to pass this on thread class. Callable will be handle ExecutorService and ExecutorService will use callable interface ro run tasks through call method. It has returns the result as well which will be used by Future object to show the result.\par
+For example:\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf2\f1\fs20 Callable<Integer> callable = \cf1 new \cf2 Callable<Integer>() \{\line     \cf3 @Override\line     \cf1 public \cf2 Integer \cf4 call\cf2 () \cf1 throws \cf2 Exception \{\line         System.\cf5\i out\cf2\i0 .println(\cf6 "number is: " \cf2 + \cf9 num\cf2 )\cf1 ;\line         return \cf2 BigThrad.\i getBigThread\i0 (\cf9 num\cf2 )\cf1 ;\line     \cf2\}\line\}\cf1 ;\line\cf2 Future<Integer> futureResult = executorService.submit(callable)\cf1 ;\line\cf2 futureStatus.add(futureResult)\cf1 ;\cf0\f0\fs22\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\b Future :\par
+\b0 This is interface to show different status of thread which is returned from callable interface for example:\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf2\f1\fs20 Iterator<Future<Integer>> futureIterator = futureStatus.iterator()\cf1 ;\line while \cf2 (futureIterator.hasNext()) \{\line     Future<Integer> res = futureIterator.next()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(\cf6 "waiting for the result" \cf2 +res)\cf1 ;\line     if\cf2 (res.isDone()) \{\line         System.\cf5\i out\cf2\i0 .println(\cf6 " result is :" \cf2 + res.get())\cf1 ;\line         \cf2 futureIterator.remove()\cf1 ;\line     \cf2\}\line\}\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf0\f0\fs22\par
+\par
 \par
 \b\par
 \par
