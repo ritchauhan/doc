@@ -222,15 +222,23 @@ Example :\par
 \b Callable:\b0\par
 Callable is interface like Runnable but we don't need to pass this on thread class. Callable will be handle ExecutorService and ExecutorService will use callable interface ro run tasks through call method. It has returns the result as well which will be used by Future object to show the result.\par
 For example:\par
-
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf2\f1\fs20 Callable<Integer> callable = \cf1 new \cf2 Callable<Integer>() \{\line     \cf3 @Override\line     \cf1 public \cf2 Integer \cf4 call\cf2 () \cf1 throws \cf2 Exception \{\line         System.\cf5\i out\cf2\i0 .println(\cf6 "number is: " \cf2 + \cf9 num\cf2 )\cf1 ;\line         return \cf2 BigThrad.\i getBigThread\i0 (\cf9 num\cf2 )\cf1 ;\line     \cf2\}\line\}\cf1 ;\line\cf2 Future<Integer> futureResult = executorService.submit(callable)\cf1 ;\line\cf2 futureStatus.add(futureResult)\cf1 ;\cf0\f0\fs22\par
-
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\b Future :\par
+\cf2\f1\fs20 Callable<Integer> callable = \cf1 new \cf2 Callable<Integer>() \{\line     \cf3 @Override\line     \cf1 public \cf2 Integer \cf4 call\cf2 () \cf1 throws \cf2 Exception \{\line         System.\cf5\i out\cf2\i0 .println(\cf6 "number is: " \cf2 + \cf9 num\cf2 )\cf1 ;\line         return \cf2 BigThrad.\i getBigThread\i0 (\cf9 num\cf2 )\cf1 ;\line     \cf2\}\line\}\cf1 ;\line\cf2 Future<Integer> futureResult = executorService.submit(callable)\cf1 ;\line\cf2 futureStatus.add(futureResult)\cf1 ;\cf0\f0\fs22\par
+\b Future :\par
 \b0 This is interface to show different status of thread which is returned from callable interface for example:\par
+\cf2\f1\fs20 Iterator<Future<Integer>> futureIterator = futureStatus.iterator()\cf1 ;\line while \cf2 (futureIterator.hasNext()) \{\line     Future<Integer> res = futureIterator.next()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(\cf6 "waiting for the result" \cf2 +res)\cf1 ;\line     if\cf2 (res.isDone()) \{\line         System.\cf5\i out\cf2\i0 .println(\cf6 " result is :" \cf2 + res.get())\cf1 ;\line         \cf2 futureIterator.remove()\cf1 ;\line     \cf2\}\line\}\par
+\cf0\b\f0\fs22 Semaphores :\par
+Limited number of thread at a time.\par
+For example:\par
 
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf2\f1\fs20 Iterator<Future<Integer>> futureIterator = futureStatus.iterator()\cf1 ;\line while \cf2 (futureIterator.hasNext()) \{\line     Future<Integer> res = futureIterator.next()\cf1 ;\line     \cf2 System.\cf5\i out\cf2\i0 .println(\cf6 "waiting for the result" \cf2 +res)\cf1 ;\line     if\cf2 (res.isDone()) \{\line         System.\cf5\i out\cf2\i0 .println(\cf6 " result is :" \cf2 + res.get())\cf1 ;\line         \cf2 futureIterator.remove()\cf1 ;\line     \cf2\}\line\}\par
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf2\b0\f1\fs20 Semaphore semaphore = \cf1 new \cf2 Semaphore(\cf8 2\cf1 , true\cf2 )\cf1 ;\par
+public void \cf4 run\cf2 () \{\line     \cf1 try \cf2\{\line         \cf9 semaphore\cf2 .acquire()\cf1 ;\line         int \cf2 result = BigThrad.\i getBigThread\i0 (\cf9 num\cf2 )\cf1 ;\line         \cf2 System.\cf5\i out\cf2\i0 .println(\cf6 "Result is: "\cf2 +result)\cf1 ;\line     \cf2\} \cf1 catch \cf2 (InterruptedException e) \{\line         e.printStackTrace()\cf1 ;\line     \cf2\} \cf1 finally \cf2\{\line         \cf9 semaphore\cf2 .release()\cf1 ;\line     \cf2\}\line\}\par
 
-\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf0\f0\fs22\par
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf0\b\f0\fs22 Fork Join:\par
+\b0 Steps:\par
+1. Create an implementation of ForkJoinTask.\par
+2. Get an instance of the ForkJoinPool.\par
+3. Submit of an instance of the ForkJoinTask implementation to the ForkJoinPool.\cf2\f1\fs20\par
+\cf0\f0\fs22\par
 \par
 \par
 \b\par
