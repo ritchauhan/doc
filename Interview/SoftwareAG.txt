@@ -1,0 +1,92 @@
+Matrix Program, String Reverse, Duplicate Characters in different ways  
+
+Interview Questions
+
+R.1:
+Find loop and remove it, in a linklist
+Implement queue using stack
+Sort a stack with constant space
+Spiral order traversal of a N-ary tree
+
+R2:
+Quick sort discussion in detail
+Deletion in BST
+Find max subsum integer array
+Find non repeating character from stream of characters
+Implement Strategy Pattern
+
+R3: Managerial Round
+Implement thread safe Stack using Linklist
+Implement Synchronization among N threads
+Java Memory model
+Garbage collection algo/ Types of garbage collectors
+How to deep clone a very large object ?
+How JVM works ?
+Detail discussion on threads - How to stop thread,Thread interrupts , Greedy threads , Thread problems , CAS algo
+Concurrent Modification Exception - Fail safe / Failfast
+
+R4: Director round
+1.How would you design phone dictionary ? Which data structure you will use and why?Optimization of the approach further. (Used Trie structure then optimized with Suffix trees)
+2. Edit distance Algorithm
+Managerial Question
+
+R5: VP round
+1 puzzle
+How we should decide - when we are going to create a class/ method / Constructor overloading.
+Discussed about my educational background, what subjects i have studied.
+How i can relate my subjects with Software engineering.
+Why S/W AG?
+
+Round 1 :
+
+1 : write the custom Hash Map
+2: ask deep on OOP and Collection
+3: ask me to write some code on given scenario
+4: how to find loop in Link List
+he discuss some scenario on it
+
+Round 2:
+
+1 ask me some topic form OOP like abstract and interface etc.
+2 ask me write a code to reverse the Link List
+3 ask me to write a code to find missing value in List use at list two logic
+4 write a code to generate fabonic series use two logic
+  some other discussion on overloading and overriding
+
+Round: 3
+
+1 : breaf discus on project they cover all the senior like code etc.
+2: ask me some puzzel to solve
+3 he give me a multi 2D array to find out diagonal value
+some other discussion on their project  
+
+1) Given some list of songs u need to play it in a random manner without repeating the songs.
+2)Given an array of positive integers shuffle the numbers in such ascending order with consecutive even followed by odd placements.
+3)Find median in a BST in O(n) and O(1) space complexity
+4)Find Median in a stream of integers.
+5)Microservice concept  
+
+design book my show app with below criteria
+use case
+flow diagram
+class diagram
+load balancing
+performance issues
+database design
+queries
+multi threading issues
+
+Implement binary search with minimum errors
+
+Interview Questions
+
+Explain to me what is volatile variable why do we need this ?  
+Answer Question
+Tell about a lock free algorithm that you know.  
+Answer Question
+We wrote an interface and asked me to implement the interface which will take a lock and release a lock.  
+Answer Question
+He asked to implement the concurrent hashmap in java.  
+Answer Question
+He asked whether I have heard of heap data structure and what is it used for ?  
+Answer Question
